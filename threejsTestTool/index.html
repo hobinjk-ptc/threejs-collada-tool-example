@@ -50,7 +50,7 @@
 
     const loader = new ColladaLoader();
     loader.load('./assets/export.dae', function(collada) {
-      scene.add(collada.scene);
+      containerObj.add(collada.scene);
     });
 
     // 7. Use the Spatial Toolbox APIs to prepare to render correctly
