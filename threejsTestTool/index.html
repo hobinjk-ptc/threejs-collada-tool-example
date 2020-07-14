@@ -14,7 +14,6 @@
   // 2. set up some variables for the three.js scene
   let camera, scene, renderer;
   let containerObj;
-  let mesh;
   let rendererWidth = screen.height; // width is height because landscape orientation
   let rendererHeight = screen.width; // height is width
   let isProjectionMatrixSet = false;
@@ -40,15 +39,12 @@
     scene.add(containerObj);
 
     // 6. Add some content to the scene's container object - customize this!
-    let texture = new THREE.TextureLoader().load('textures/crate.gif');
-    let geometry = new THREE.BoxBufferGeometry(100, 100, 100);
-    let material = new THREE.MeshBasicMaterial({map: texture});
-    mesh = new THREE.Mesh(geometry, material);
-    mesh.position.setZ(50);
-    containerObj.add(mesh);
-
     const loader = new ColladaLoader();
     loader.load('./assets/export.dae', function(collada) {
+      collada.scene.scale.x = 1000;
+      collada.scene.scale.y = 1000;
+      collada.scene.scale.z = 1000;
+      collada.scene.position.z = 50;
       containerObj.add(collada.scene);
     });
 
@@ -71,7 +67,6 @@
     // 10. Every frame, set the position of the containerObj to the modelViewMatrix
     if (isProjectionMatrixSet) {
       setMatrixFromArray(containerObj.matrix, modelViewMatrix);
-      mesh.rotation.z += 0.01; // make it spin
       renderer.render(scene, camera);
     }
   }
