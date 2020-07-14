@@ -38,6 +38,12 @@
     containerObj.matrixAutoUpdate = false;
     scene.add(containerObj);
 
+    var light = new THREE.AmbientLight(0x999999);
+    containerObj.add(light);
+    light = new THREE.PointLight(0xffffff, 1);
+    light.position.set(50, 50, 150);
+    containerObj.add( light );
+
     // 6. Add some content to the scene's container object - customize this!
     const loader = new ColladaLoader();
     loader.load('./assets/export.dae', function(collada) {
