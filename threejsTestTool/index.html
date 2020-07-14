@@ -21,7 +21,7 @@
 
   // 3. Initialize the Spatial Toolbox API
   let spatialInterface;
-  if (SpatialInterface) {
+  if (typeof SpatialInterface !== 'undefined') {
     spatialInterface = new SpatialInterface();
   }
 
